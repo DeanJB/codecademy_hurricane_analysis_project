@@ -36,27 +36,42 @@ def update_damages(damages_list):
             updated_damages.append(damage_as_float)
     return updated_damages
 
-print(update_damages(damages))
-    
-            
+#testing damage update function
+#print(update_damages(damages))
 
-
-
-
-
+#New variable for damages list
+updated_damages = update_damages(damages)
 
 # write your construct hurricane dictionary function here:
 
+def hurricane_data_sets(names, months, years, max_winds, areas, damages, deaths):
+    hurricanes = {}
+    for hurricane in range(len(names)):
+        hurricanes[names[hurricane]] = {"Name": names[hurricane], "Month": months[hurricane], "Year": years[hurricane], "Max Sustained Wind": max_sustained_winds[hurricane], "Areas Affected": areas_affected[hurricane], "Damage": updated_damages[hurricane], "Deaths": deaths[hurricane]}
+    return hurricanes                  
 
+hurricane_data = hurricane_data_sets(names, months, years, max_sustained_winds, areas_affected, updated_damages, deaths)
 
-
+#------Testing hurricane data dictionary creator function-----
+#print(hurricane_data)
+#print(hurricane_data["Dean"])
 
 
 
 # write your construct hurricane by year dictionary function here:
 
+def hurricanes_by_year(hurricanes):
+    years = {}
+    for each in hurricanes:
+        current_cane = hurricanes[each]
+        current_year = current_cane["Year"]
+        if current_year not in years:
+            years[current_year] = hurricanes[each]
+        elif current_year in years:
+            years[current_year].update(hurricanes[each])
+    return years
 
-
+print(hurricanes_by_year(hurricane_data))
 
 
 
