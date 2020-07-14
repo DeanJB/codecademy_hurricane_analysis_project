@@ -103,7 +103,6 @@ areas_hit = areas_by_affected(hurricane_data)
 # write your find most affected area function here:
 
 def most_affected(areas_hit):
-    worst_place = ""
     worst_place_hits = 0
     for each in areas_hit:
         if areas_hit[each] > worst_place_hits:
