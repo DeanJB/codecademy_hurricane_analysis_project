@@ -100,7 +100,7 @@ areas_hit = areas_affected(hurricane_data)
 
 # write your find most affected area function here:
 
-def most_affected(hurricane_data):
+def most_affected(areas_hit):
     worst_place = ""
     worst_place_hits = 0
     for each in areas_hit:
@@ -111,18 +111,32 @@ def most_affected(hurricane_data):
     return the_worst
 
 hit_most = most_affected(areas_hit)
-print(hit_most)
+
+#testing most affected
+#print(hit_most)
 
 
 
 # write your greatest number of deaths function here:
 
+def most_deaths(hurricane_data):
+    body_count = 0
+    big_killer_cane = ""
+    for hurricane in hurricane_data:
+        current_cane = hurricane_data[hurricane]
+        if current_cane["Deaths"] > body_count:
+            body_count = current_cane["Deaths"]
+            big_killer_cane = current_cane["Name"]
+    high_score = (big_killer_cane, body_count)
+    return high_score
+        
 
 
 
+max_mortallity_cane = most_deaths(hurricane_data)
 
-
-
+#Testing out most deaths function
+print(max_mortallity_cane)
 # write your catgeorize by mortality function here:
 
 
