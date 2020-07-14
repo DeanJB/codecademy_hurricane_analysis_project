@@ -39,7 +39,7 @@ def update_damages(damages_list):
     return updated_damages
 
 #testing damage update function
-#print(update_damages(damages))
+print(update_damages(damages))
 
 #New variable for damages list
 updated_damages = update_damages(damages)
@@ -155,16 +155,27 @@ def mortality_rate(hurricane_data):
 scaled_mortality = mortality_rate(hurricane_data)
 
 #Testing mortality rate function
-print(scaled_mortality[3])
+#print(scaled_mortality[3])
 
 
 
 # write your greatest damage function here:
 
+def most_damage_done(hurricane_data):
+    damage_done = 0
+    big_smashing_cane = ""
+    for hurricane in hurricane_data:
+        current_cane = hurricane_data[hurricane]
+        if type(current_cane["Damage"]) == str:
+            continue
+        elif current_cane["Damage"] > damage_done and type(current_cane["Damage"]) == float:
+            damage_done = current_cane["Damage"]
+            big_smashing_cane = current_cane["Name"]
+    highest_damage = (big_smashing_cane, damage_done)
+    return highest_damage
 
 
-
-
-
+#Testing most damage function
+#print(most_damage_done(hurricane_data))
 
 # write your catgeorize by damage function here:
