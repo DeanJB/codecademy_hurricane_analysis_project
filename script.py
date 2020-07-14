@@ -19,6 +19,8 @@ damages = ['Damages not recorded', '100M', 'Damages not recorded', '40M', '27.9M
 # deaths for each hurricane
 deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,318,107,65,19325,51,124,17,1836,125,87,45,133,603,138,3057,74]
 
+
+
 # write your update damages function here:
 def update_damages(damages_list):
     conversions = {"M": 1000000, "B": 1000000000}
@@ -80,7 +82,7 @@ def hurricanes_by_year(hurricanes):
 
 
 
-def areas_affected(hurricanes):
+def areas_by_affected(hurricanes):
     areas_damaged = {}
     for hurricane in hurricanes:
         current_cane = hurricanes[hurricane]
@@ -92,7 +94,7 @@ def areas_affected(hurricanes):
     return areas_damaged
 
         
-areas_hit = areas_affected(hurricane_data)
+areas_hit = areas_by_affected(hurricane_data)
 
 
 #testing out areas affected function below
@@ -136,12 +138,24 @@ def most_deaths(hurricane_data):
 max_mortallity_cane = most_deaths(hurricane_data)
 
 #Testing out most deaths function
-print(max_mortallity_cane)
+#print(max_mortallity_cane)
 # write your catgeorize by mortality function here:
 
+def mortality_rate(hurricane_data):
+    mortality_scale = {0: 0, 1: 100, 2: 500, 3: 1000, 4: 10000, 5: 1000000}
+    mortality_rating = {0: [], 1: [], 2: [], 3: [], 4: [], 5: []}
+    for i in hurricane_data:
+        current_cane = hurricane_data[i]
+        for x in mortality_scale:
+            if current_cane["Deaths"] <= mortality_scale[x] and current_cane["Deaths"] > mortality_scale[x -1]:
+                mortality_rating[x].append(current_cane)
+    return mortality_rating
+    
 
+scaled_mortality = mortality_rate(hurricane_data)
 
-
+#Testing mortality rate function
+print(scaled_mortality[3])
 
 
 
