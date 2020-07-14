@@ -39,7 +39,7 @@ def update_damages(damages_list):
     return updated_damages
 
 #testing damage update function
-print(update_damages(damages))
+#print(update_damages(damages))
 
 #New variable for damages list
 updated_damages = update_damages(damages)
@@ -112,6 +112,7 @@ def most_affected(areas_hit):
     the_worst = (the_worst_place, worst_place_hits)
     return the_worst
 
+
 hit_most = most_affected(areas_hit)
 
 #testing most affected
@@ -179,3 +180,18 @@ def most_damage_done(hurricane_data):
 #print(most_damage_done(hurricane_data))
 
 # write your catgeorize by damage function here:
+
+def damaged_rating(hurricane_data):
+    damage_scale = {0: 0, 1: 100000000, 2: 1000000000, 3: 10000000000, 4: 50000000000, 5: 1000000000000000000000}
+    damage_rating = {0: [], 1: [], 2: [], 3: [], 4: [], 5: []}
+    for i in hurricane_data:
+        current_cane = hurricane_data[i]
+        for x in damage_scale:
+            if type(current_cane["Damage"]) == str:
+                damage_rating[0].append(current_cane)
+            elif current_cane["Damage"] <= damage_scale[x] and current_cane["Damage"] > damage_scale[x -1]:
+                damage_rating[x].append(current_cane)
+    return damage_rating
+
+damages_rated = damaged_rating(hurricane_data)
+print(damages_rated[5])
