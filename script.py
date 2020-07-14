@@ -71,8 +71,8 @@ def hurricanes_by_year(hurricanes):
             years[current_year].update(hurricanes[each])
     return years
 
-print(hurricanes_by_year(hurricane_data))
-
+#Testing the hurricanes by year function
+#print(hurricanes_by_year(hurricane_data))
 
 
 
@@ -80,15 +80,38 @@ print(hurricanes_by_year(hurricane_data))
 
 
 
+def areas_affected(hurricanes):
+    areas_damaged = {}
+    for hurricane in hurricanes:
+        current_cane = hurricanes[hurricane]
+        for area in current_cane["Areas Affected"]:
+                if area not in areas_damaged:
+                    areas_damaged[area] = 1
+                if area in areas_damaged:
+                    areas_damaged[area] += 1
+    return areas_damaged
+
+        
+areas_hit = areas_affected(hurricane_data)
 
 
-
+#testing out areas affected function below
+#print(areas_hit)
 
 # write your find most affected area function here:
 
+def most_affected(hurricane_data):
+    worst_place = ""
+    worst_place_hits = 0
+    for each in areas_hit:
+        if areas_hit[each] > worst_place_hits:
+            the_worst_place = each
+            worst_place_hits = areas_hit[each]
+    the_worst = (the_worst_place, worst_place_hits)
+    return the_worst
 
-
-
+hit_most = most_affected(areas_hit)
+print(hit_most)
 
 
 
